@@ -1,0 +1,44 @@
+﻿button {
+	font-family: 'Times New Roman';
+	text-align: center;
+	border: 2px solid white;
+	padding: 10px;
+	border-radius: 15px;
+	transition: all ease 0.3s;
+	background-color: white;
+	cursor: pointer;
+	align-content : center;
+	justify-content : center; /*افقي*/
+	align-items : center;/*عمودي*/
+	display :flex;
+}
+button:active{
+	transform : scale(0.95);
+	filter : brightness(70%);
+	background-color : white;
+}
+button:hover{
+	filter : brightness(70%);
+}
+body {
+	background-color:white ;
+	font-family : 'Times New Roman';
+	text-align : center;
+	justify-content :center;/*عمودي*/
+	align-items : center; /*افقي#cfe0e8*/
+}
+h1 {
+	font-family: 'Times New Roman';
+	font-size: 70px;
+	margin-top: 0;
+}
+.icon {
+	width: 50px;
+	height: 50px;
+	padding: 15px;
+	display: flex;
+	margin-top: 0;
+	justify-content: flex-end;
+	margin-left: auto;
+	gap: 10px;
+}
