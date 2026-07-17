@@ -1,0 +1,204 @@
+﻿ <!DOCTYpE html>
+ <html>
+ <head>
+     <meta  charset="utf-8"/>
+     <link rel="icon" href="logo (1).png" type="image/png" />
+<link rel="stylesheet" href="style.css" />
+
+     <style>
+         a{
+             text-decoration:none;
+         }
+         img {
+             height: auto;
+             width: 100%;
+             height: 400px;
+         }
+
+         /*  img:active {
+                 transform: scale(0.3);
+                 filter: brightness(70%);
+             }
+
+             img:hover {
+                 filter: brightness(70%);
+             }
+*/
+         .image {
+             /*
+              margin-right :auto;
+              margin-top: auto;
+              height: 300px;
+             */
+             text-align: center;
+             width: 50%;
+         }
+.image img{
+    width:100%;
+    height:auto;
+   max-height : 700px;
+}
+.container{
+    align-items :flex-start ;/*تيجي العناصر عمودية بالوسط*/
+    display :flex;
+    justify-content:space-around;/*توزيع متوازن*/
+    flex-direction :row;/*الصورة يمين والباقي يسار*/
+}
+
+button{
+    width :90%;
+    height : 80px;
+   font-family : 'Times New Roman';
+   font-size : 40px;
+  background-color : white;
+  margin-left : auto;
+  margin-bottom :auto;
+  border : 2px solid black;
+}
+
+.icon button{
+    height : 50px;
+    width:50px;
+    font-size : 20px;
+}
+body{
+background-color :white;
+}
+         .price {
+             /*
+             
+             margin-left: auto;*/
+             text-align: center;
+             font-size: 50px;
+         }
+         
+.left-content{
+    flex-direction :column; /*ترتيب عمودي*/
+    justify-content:flex-start;
+    display: flex;
+    width : 60%;
+    align-items :center; /*حتى ييجوا بالوسط*/
+    gap:15px;
+}
+.quantity{
+    display :flex;
+    align-items :center;
+    justify-content:center;
+    gap : 10px;
+   
+}
+   .quantity input {
+      width: 40px;
+    height: 40px;
+     padding: 15px;
+     border-radius:15px;
+     font-family :'Times New Roman';
+     font-size : 30px;
+     text-align :center;
+         }
+   .quantity .qty-btn{
+       height : 70px !important;
+       width:70px !important;
+       display :flex;
+       font-size :40px;
+       align-items :center;
+       justify-content:center;
+       border-radius :15px;
+   }
+   /*لالغاء اسهم الانبوت*/
+   .quantity input::-webkit-outer-spin-button,
+   .quantity input::-webkit-inner-spin-button{
+       -webkit-appearance : none;
+       margin:0;
+   }
+   .top{
+       display :flex;
+       gap:30px;
+   }
+         .top a {
+             /* margin-right :auto;
+       margin-top :auto;*/
+             color: black;
+             font-size: 20px;
+             text-decoration: none; /*لالغاء الخط*/
+             font-family: 'Times New Roman';
+             
+         }
+  .nabvar{
+      display :flex;
+      justify-content:space-between;
+      align-items:center;
+      padding : 10px 20px;
+     gap :20px;
+  }
+     </style>
+ </head>
+
+ <body>
+     
+     <header class="nabvar">
+         <div class="top">
+             <a href="interface.html">Home</a>
+             <a href="menuBook.html">All Products</a>
+         </div>
+         <div class="icon">
+             <button>👤</button>
+             <a href="cart.html">
+                 <button>🛒</button>
+             </a>
+             <button>💟</button>
+         </div>
+     </header>
+    
+
+     <div class="container">
+         <div class="image">
+             <img id="productImg" />
+         </div>
+         <div class="left-content">
+             <div> <h1 id="productName"></h1></div>
+             <div class="price">   <p id="productPrc"></p></div>
+             <div class="quantity">
+                 <button  class="qty-btn"onclick="changeQuantity(-1)" type="button">-</button>
+                 <input type="number" id="quantity" value="1"min="1"  />
+                 <button class="qty-btn" onclick="changeQuantity(1)" type="button">+</button>
+             </div>
+             <button id="addtocart" onclick="calculatePrice()">Add to cart</button>
+         </div>
+     </div>
+
+
+     <script>
+
+
+         const qty = document.getElementById("quantity");
+         let count = parseInt(qty.value) || 1;
+
+         function changeQuantity(amount) {
+             count += amount;
+             if (count < 1)
+                 count = 1;
+             qty.value = count;
+         }
+         const urlProd = new URLSearchParams(window.location.search);
+         const image = urlProd.get('img');
+         const price = urlProd.get('price');
+         const title = urlProd.get('title');
+         if (image)
+             document.getElementById("productImg").src = image;
+         if (price)
+             document.getElementById("productPrc").innerText = price;
+         if (title)
+             document.getElementById("productName").innerText = title;
+
+         function calculatePrice() {
+             const currentCnt = parseInt(qty.value) || 1;
+             const priceFloat = parseFloat(price.replace(/[^0-9.]/g, ''));
+             if (!isNaN(priceFloat)) {
+                 const total = priceFloat * currentCnt;
+                 console.log(`Total Price ${total}`);
+             }
+             }
+     </script>
+ </body>
+ </html>
